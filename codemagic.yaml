@@ -5,12 +5,17 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       node: latest
+      java: 17
     scripts:
       - name: Install dependencies
         script: | 
           npm install
+      - name: Generate Android System Files
+        script: |
+          node -e "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('app.json')); data.expo.android = data.expo.android || {}; data.expo.android.package = 'com.momo.assistant'; fs.writeFileSync('app.json', JSON.stringify(data, null, 2));"
+          CI=1 npx expo prebuild --platform android
       - name: Build Android APK
         script: | 
-          cd android && ./gradlew assembleRelease
+          cd android && chmod +x gradlew && ./gradlew assembleRelease
     artifacts:
       - android/app/build/outputs/apk/release/*.apk

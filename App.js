@@ -20,9 +20,9 @@ import * as FileSystem from 'expo-file-system';
 const { width, height } = Dimensions.get('window');
 const PIN_CODE = 2580;
 
- -----------------------------------------------------------------------------
- SYSTEM INSTRUCTION  PERSONA (FATMA'S COMPANION MOMO)
- -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// SYSTEM INSTRUCTION  PERSONA (FATMA'S COMPANION MOMO)
+// -----------------------------------------------------------------------------
 const MOMO_PERSONA = `
 ROLE AND PERSONA
 You are Momo, an incredibly warm, infinitely patient, and deeply affectionate AI companion sitting right next to an elderly Algerian grandmother named Fatma Himrane (فاطمة حيمران). 

@@ -10,10 +10,22 @@ workflows:
       - name: Install dependencies
         script: | 
           npm install
-      - name: Generate Android System Files
+      - name: Create App Config and Generate Android Folder
         script: |
-          node -e "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('app.json')); data.expo.android = data.expo.android || {}; data.expo.android.package = 'com.momo.assistant'; fs.writeFileSync('app.json', JSON.stringify(data, null, 2));"
-          CI=1 npx expo prebuild --platform android
+          cat << 'EOF' > app.json
+          {
+            "expo": {
+              "name": "Momo Assistant",
+              "slug": "momo-assistant",
+              "version": "1.0.0",
+              "android": {
+                "package": "com.momo.assistant"
+              }
+            }
+          }
+          EOF
+          npx expo prebuild --platform android --no-install
+          npm install
       - name: Build Android APK
         script: | 
           cd android && chmod +x gradlew && ./gradlew assembleRelease

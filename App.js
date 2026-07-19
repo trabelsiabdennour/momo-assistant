@@ -14,8 +14,8 @@ import {
   Animated
 } from 'react-native';
 import { Audio } from 'expo-av';
-import  as SecureStore from 'expo-secure-store';
-import  as FileSystem from 'expo-file-system';
+import * as SecureStore from 'expo-secure-store';
+import * as FileSystem from 'expo-file-system';
 
 const { width, height } = Dimensions.get('window');
 const PIN_CODE = 2580;
